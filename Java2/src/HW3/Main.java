@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         task1();
+        task2();
     }
 
     private static void task1() {
@@ -19,6 +20,20 @@ public class Main {
         System.out.println("Текст:\n" + text);
         System.out.println("Уникальные слова:\n" + getUniqueWords(words));
         System.out.println("Сколько раз слова встречаются в тексте:\n" + getWordsFrequency(words));
+    }
+
+    private static void task2() {
+        System.out.println();
+        System.out.println("2е задание");
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Иванов", "035345555", "ivan@off.ru");
+        phoneBook.add("Петров", "04564665", "petroff@mail.ru");
+        phoneBook.add("Сидоров", "0645667", "sidorof@gmail.com");
+        phoneBook.add("Иванов", "0456477", "coolxakep@one.lv");
+        phoneBook.add("Петров", "0568765876", "petrov81@gmail.com");
+        System.out.println("Записная книжка: \n" + phoneBook);
+        System.out.println("Телефоны по фамилии Иванов: " + phoneBook.getPhones("Иванов"));
+        System.out.println("Мейлы по фамилии Петров: " + phoneBook.getEmails("Петров"));
     }
 
     private static String[] text2words(String str) {
