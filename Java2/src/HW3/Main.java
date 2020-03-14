@@ -1,7 +1,8 @@
 package HW3;
 
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class Main {
 
@@ -42,12 +43,8 @@ public class Main {
         return words;
     }
 
-    private static HashSet<String> getUniqueWords(String[] words) {
-        HashSet<String> uniqueWords = new HashSet<>();
-        for(int i = 0; i < words.length; i++) {
-            uniqueWords.add(words[i]);
-        }
-        return uniqueWords;
+    private static TreeSet<String> getUniqueWords(String[] words) {
+        return new TreeSet<String>(Arrays.asList(words));
     };
 
     private static HashMap<String, Integer> getWordsFrequency(String[] words) {
