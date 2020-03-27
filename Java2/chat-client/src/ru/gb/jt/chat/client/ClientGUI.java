@@ -133,13 +133,29 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
 
     private void putLog(String msg) {
         if ("".equals(msg)) return;
+        msg = handleSystemMessages(msg);
+        String finalMsg = msg;
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                log.append(msg + "\n");
+                log.append(finalMsg + "\n");
                 log.setCaretPosition(log.getDocument().getLength());
             }
         });
+    }
+
+    private String handleSystemMessages(String msg) {
+        String[] arr = msg.split(Library.DELIMITER);
+        if(arr.length > 1) {
+            switch(arr[0]) {
+                case Library.AUTH_REQUEST: msg = arr[1] + " tries to authorize"; break;
+                case Library.AUTH_ACCEPT: msg = arr[1] + " is authorized"; break;
+                case Library.AUTH_DENIED: msg = "Authorization failed"; break;
+                case Library.MSG_FORMAT_ERROR: msg = "Unknown message: " + arr[1]; break;
+                case Library.TYPE_BROADCAST: msg = "Broadcast: " + arr[3]; break;
+            }
+        }
+        return msg;
     }
 
     private void showException(Thread t, Throwable e) {
